@@ -120,7 +120,12 @@ const LoginSignup = () => {
       {action === "Sign Up" ? <div></div>: <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
       <div className="submit-container">
         
-        <div className={action === "Login" ? "submit gray": "submit"} onClick={() => {setAction("Sign Up")}}>Sign Up</div>
+
+        {action === "Sign Up" ?
+          <div className="submit" onClick={handleSubmit}>Sign Up</div>
+          :
+          <div className={action === "Login" ? "submit gray": "submit"} onClick={() => {setAction("Sign Up")}}>Sign Up</div>
+        }
 
         {action === "Login" ? 
           <div className="submit" onClick={handleSignin}>Login</div>
