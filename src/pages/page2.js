@@ -1,12 +1,12 @@
 import Links from "../components/links.js";
 
-function test () {
+function Page2 () {
     return(
         <>
         <Links />
-        <h1>page2</h1>
+        <h1>Page2</h1>
         </>
     )
 }
 
-export default test;
+export default Page2;
