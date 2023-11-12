@@ -1,12 +1,24 @@
 import React from 'react';
-import Links from "./components/links.js";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
+import Links from "./components/Links";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
-  return ( 
+  return (
     <>
-      <Links/>
-      <h2>app</h2>
+      <BrowserRouter>
+        <Links />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="" element={<Home />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:productId" element={<ProductDetails />} />
+          <Route path="*" element={<h2>404 Not Found</h2>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
