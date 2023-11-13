@@ -34,7 +34,7 @@ const LoginSignup = () => {
 
     if (response.status === 200)
     alert("User Created")
-    navigate("/", {state: {name: name}})
+    navigate("", {state: {name: name}})
 
   };
 
