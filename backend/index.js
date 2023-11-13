@@ -28,6 +28,32 @@ app.post("/GetProduct", (req, res) => {
     }
 })
 
+app.post("/create", async (req, res) => {
+    const { username, email, password } = req.body
+    
+    try {
+        const newAccount = await pool.query(
+            `INSERT INTO accounts (username, password, email) VALUES('${username}', '${password}', '${email}') RETURNING *`
+        )
+        res.json(newAccount)
+    } catch (err) {
+        console.error(err.message)
+    }
+  })
+
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body
+
+    try {
+        const login = await pool.query(
+            `SELECT * FROM accounts WHERE email = '${email}' AND password = '${password}'`
+        )
+        res.json(login)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 app.listen(port, () => {
     console.log("server started on port:", port)
 })

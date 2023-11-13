@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";    
 import "./Links.css";
 
-function links () {
+function Links () {
     return(
         <>
         <ul className="links">
@@ -13,4 +13,4 @@ function links () {
     )
 }
 
-export default links;
+export default Links;
