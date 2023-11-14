@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-
+import { HelmetProvider } from 'react-helmet-async';
 import Links from "./components/links";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -8,10 +8,11 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import AdminProducts from "./pages/AdminProducts";
 import AdminProductDetails from "./pages/AdminProductDetails";
+const helmetContext = {};
 
 function App() {
   return (
-    <>
+    <HelmetProvider context={helmetContext}>
       <BrowserRouter>
         <Links />
         <Routes>
@@ -25,7 +26,7 @@ function App() {
           <Route path="*" element={<h2>404 Not Found</h2>} />
         </Routes>
       </BrowserRouter>
-    </>
+    </HelmetProvider>
   );
 }
 
