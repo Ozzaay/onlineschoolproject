@@ -15,7 +15,7 @@ CREATE TABLE products (
     name VARCHAR(255) UNIQUE NOT NULL,
     price VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    image VARCHAR(255) NOT NULL
+    image VARCHAR NOT NULL
 );
 
 CREATE TABLE cart (
