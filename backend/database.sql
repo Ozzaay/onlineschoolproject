@@ -6,7 +6,8 @@ CREATE TABLE accounts(
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE
+    email VARCHAR(255) NOT NULL UNIQUE,
+    is_admin BOOLEAN NOT NULL DEFAULT 'false'
 );
 
 CREATE TABLE products (
@@ -27,4 +28,4 @@ CREATE TABLE cart (
 );
 
 INSERT INTO products (name, price, description, image) VALUES ('T-Shirt', '10', 'A nice T-Shirt', 'test');
-
+INSERT INTO accounts (username, password, email) VALUES ('Test User', '1234', 'idk@no');

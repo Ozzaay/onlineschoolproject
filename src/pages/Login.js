@@ -40,7 +40,6 @@ const LoginSignup = () => {
 
   const handleSignin = async (event) => {
     event.preventDefault();
-
     const login = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
@@ -52,19 +51,27 @@ const LoginSignup = () => {
       }),
     });
 
-    const loginResponse = await login.json();
-    try {
-      if (
-        email === loginResponse.rows[0].email &&
-        password === loginResponse.rows[0].password 
-      ) {
-        navigate("/", { state: { id: loginResponse.rows[0].id, name: loginResponse.rows[0].username } });
-      } else {
+    await login.json().then((response) => {
+     
+      try {
+        if (
+          response !== "Login Failed"
+          // email === loginResponse.rows[0].email &&
+          // password === loginResponse.rows[0].password 
+        ) {
+          sessionStorage.setItem("username", response.username);
+          sessionStorage.setItem("isAdmin", response.isAdmin);
+          sessionStorage.setItem("accessToken", response.accessToken);
+          // navigate("/", { state: { id: loginResponse.rows[0].id, name: loginResponse.rows[0].username } });
+          navigate("/")
+        } else {
+          alert("Login Failed");
+        }
+      } catch (error) {
+        console.log(error);
         alert("Login Failed");
       }
-    } catch (error) {
-      alert("Login Failed");
-    }
+    });
   };
 
   const handleNameChange = (event) => {
