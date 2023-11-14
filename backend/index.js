@@ -15,7 +15,7 @@ const generateAccessToken = (user) => {
 }
 
 const verifyToken = (req, res, next) => {
-    const authHead = req.body.headers.authorization
+    const authHead = req.headers.authorization
     if (authHead){
         const token = authHead.split(" ")[1]
 

@@ -6,7 +6,7 @@ function AdminProducts () {
 
     async function authorization() {
         try {
-            await axios.post("http://localhost:5000/authorization", {
+            await axios.post("http://localhost:5000/authorization", null, {
                 headers: {
                     "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
                 }

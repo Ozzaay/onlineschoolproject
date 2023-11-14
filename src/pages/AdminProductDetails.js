@@ -31,22 +31,35 @@ function AdminProductDetails () {
         })
     }
 
-    function imageChangeHandler(event) {
+    function imageChangeHandler(image) {
         setProduct((prevValue) => {
             return {
                 ...prevValue,
-                image: event.target.value
+                image: image
             }
         })
     }
 
+    const handleImage = (event) => {
+        const data = new FileReader()
+        data.addEventListener('load', () => {
+            imageChangeHandler(data.result)
+        })
+        data.readAsDataURL(event.target.files[0])
+
+    }
+
     async function authorization() {
         try {
-            await axios.post("http://localhost:5000/authorization", {
+            // const headers = {
+            //     authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+            // }
+            await axios.post("http://localhost:5000/authorization", null, {
                 headers: {
-                    "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+                    authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
                 }
-            }).then((response) => {
+            })
+            .then((response) => {
                 if(!response.data.status === "200") {
                     window.location.href = "/login";
                 } else {
@@ -68,13 +81,23 @@ function AdminProductDetails () {
         })
     }
 
-    async function updateProduct() {
-        await axios.post("http://localhost:5000/UpdateProduct", {
-            name: product.name,
-            price: product.price,
-            description: product.description,
-            image: product.image
-        }).then((response) => {
+    async function updateProduct(event) {
+        event.preventDefault();
+        var body = {
+            name: `${product.name}`,
+            price: `${product.price}`,
+            description: `${product.description}`,
+            image: `${product.image}`
+        }
+        var headers = {
+            "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+        }
+        await axios.post("http://localhost:5000/updateProduct", body, {
+            headers: {
+                "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+            }
+        })
+        .then((response) => {
             console.log(response);
         })
     }
@@ -99,7 +122,7 @@ function AdminProductDetails () {
             <label>Description</label>
             <input type="text" onChange={descriptionChangeHandler} value={product.description} />
             <label>Image</label>
-            <input type="text" onChange={imageChangeHandler} value={product.image} />
+            <input type="file" onChange={handleImage}/>
             <button onClick={updateProduct}>Update Product</button>
         </form>
 
