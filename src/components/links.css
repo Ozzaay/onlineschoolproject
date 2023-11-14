@@ -1,4 +1,4 @@
-ul {
+.links {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -6,11 +6,11 @@ ul {
     background-color: #333;
   }
   
-  li {
+  .link {
     float: left;
   }
   
-  li a {
+  .link a {
     display: block;
     color: white;
     text-align: center;
@@ -18,7 +18,7 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover:not(.active) {
+  .link a:hover:not(.active) {
     background-color: #111;
   }
   

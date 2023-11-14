@@ -4,11 +4,11 @@ import "./links.css";
 function links () {
     return(
         <>
-        <ul>
-            <li><Link to="/">app</Link></li>
-            <li><Link to="/page1">page1</Link></li>
-            <li><Link to="/page2">page2</Link></li>
-            <li><Link to="/Login">Login</Link></li>
+        <ul className="links">
+            <li className="link"><Link to="">Home</Link></li>
+            <li className="link"><Link to="products">Product</Link></li>
+            <li className="link"><Link to="login">Login</Link></li>
+            <li className="link"><Link to="admin/products">Admin</Link></li>
         </ul>
         </>
     )

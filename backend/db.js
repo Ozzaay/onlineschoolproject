@@ -6,7 +6,7 @@ const pool = new Pool({
     password: process.env.REACT_APP_USER_PASSWORD,
     host: "localhost",
     port: "5432",
-    database: "newsprogram"
+    database: "online_shop"
 })
 
 module.exports = pool
