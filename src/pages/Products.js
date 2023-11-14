@@ -6,7 +6,6 @@ function Products () {
 
     async function fetchProducts() {
         await axios.get("http://localhost:5000/GetAllProducts").then((response) => {
-            console.log(response);
             setProducts(response.data);
         })
     }
