@@ -5,37 +5,45 @@
   color: #fff;
 }
 
+.prodform{
+  background-color: rgb(3, 58, 129);
+  margin: auto;
+  width: 90%;
+  height: 100vh;
+}
+
 .ull{
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto;
 }
 
 .scansostobaconkorv{
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-top: 2%;
   width: 90%;
-  height: 100%;
-  background-color: #fff;
-  padding: 2%;
-  border-radius: 10px;
+  height: 106%;
+  background-color: transparent;
   font-size: 105%;
   margin-right: 10%;
 }
 
 .bild{
   margin: auto;
-  margin-top: 8%;
-  width: auto;
-  height: auto;
+  height: 320px;
+  clip: rect(0px,200px,380px,0px);
 }
 
 .namn{
   margin: auto;
-  margin-top: 7px;
   font-size: 150%;
   font-weight: bold;
   color: rgb(0, 153, 255);
   text-decoration: none;
+}
+
+.price{
+  margin-top: 15%;
+  margin: auto;
+  color: #fff;
 }

@@ -18,16 +18,20 @@ function Products () {
     return(
         <>
         <h1 className='produtta'>Products</h1>
-        <ul className='ull'>
-            {products.map((product) => {
-                return(
-                    <li className='scansostobaconkorv' key={product.id}>
-                        <a className='namn' href={`/products/${product.name}`}>{product.name}</a>
-                        <img className='bild' src={product.image} alt={product.name} />
-                    </li>
-                )
-            })}
-        </ul>
+        <form className='prodform'>
+            <ul className='ull'>
+                {products.map((product) => {
+                    return(
+                        <li className='scansostobaconkorv' key={product.id}>
+                            <p></p>
+                            <img className='bild' src={product.image} alt={product.name} />
+                            <a className='namn' href={`/products/${product.name}`}>{product.name}</a>
+                            <p className="price">{product.price}</p>
+                        </li>
+                    )
+                })}
+            </ul>
+        </form>
         </>
     )
 }
