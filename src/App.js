@@ -9,6 +9,7 @@ import ProductDetails from "./pages/ProductDetails";
 import AdminProducts from "./pages/AdminProducts";
 import AdminProductDetails from "./pages/AdminProductDetails";
 import ShoppingCart from './pages/ShoppingCart';
+import AddProduct from './pages/AddProduct';
 const helmetContext = {};
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="products/:productId" element={<ProductDetails />} />
           <Route path="admin/products" element={<AdminProducts />} />
           <Route path="admin/products/:productId" element={<AdminProductDetails />} />
+          <Route path="admin/addproduct" element={<AddProduct />} />
           <Route path="*" element={<h2>404 Not Found</h2>} />
         </Routes>
       </BrowserRouter>
