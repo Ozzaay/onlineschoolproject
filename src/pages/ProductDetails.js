@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./ProductDetails.css";
 
 function ProductDetails () {
     const { productId } = useParams();
@@ -21,11 +22,15 @@ function ProductDetails () {
 
     return(
         <>
-        <h1>ProductDetails</h1>
-        <p>Product Name: {product.name}</p>
-        <p>Product Price: {product.price}</p>
-        <p>Product Description: {product.description}</p>
-        <img src={product.image} alt={product.name} />
+        <h1 className="produtta">ProductDetails</h1>
+        <li className="box">
+            <img className="bild2" src={product.image} alt={product.name} />
+            <li className="box2">
+                <p className="namn2">Product Name: {product.name}</p>
+                <p className="namn2">Product Price: {product.price}</p>
+                <p className="namn2">Product Description: {product.description}</p>
+            </li>
+        </li>
         </>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './Products.css';
 
 function Products () {
     const [products, setProducts] = React.useState([]);
@@ -16,12 +17,13 @@ function Products () {
 
     return(
         <>
-        <h1>Products</h1>
-        <ul>
+        <h1 className='produtta'>Products</h1>
+        <ul className='ull'>
             {products.map((product) => {
                 return(
-                    <li key={product.id}>
-                        <a href={`/products/${product.name}`}>{product.name}</a>
+                    <li className='scansostobaconkorv' key={product.id}>
+                        <a className='namn' href={`/products/${product.name}`}>{product.name}</a>
+                        <img className='bild' src={product.image} alt={product.name} />
                     </li>
                 )
             })}

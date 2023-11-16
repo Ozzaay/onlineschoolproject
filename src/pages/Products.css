@@ -1,0 +1,41 @@
+.produtta{
+  margin: auto;
+  margin-top: 1%;
+  width: fit-content;
+  color: #fff;
+}
+
+.ull{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.scansostobaconkorv{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 2%;
+  width: 90%;
+  height: 100%;
+  background-color: #fff;
+  padding: 2%;
+  border-radius: 10px;
+  font-size: 105%;
+  margin-right: 10%;
+}
+
+.bild{
+  margin: auto;
+  margin-top: 8%;
+  width: auto;
+  height: auto;
+}
+
+.namn{
+  margin: auto;
+  margin-top: 7px;
+  font-size: 150%;
+  font-weight: bold;
+  color: rgb(0, 153, 255);
+  text-decoration: none;
+}

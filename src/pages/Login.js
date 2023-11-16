@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import './Login.css'
 import { useNavigate } from "react-router-dom";
 
-// import user_icon from '../ass/person.png'
-// import email_icon from '../ass/email.png'
-// import password_icon from '../ass/password.png'
+import user_icon from '../Assets/person.png'
+import email_icon from '../Assets/email.png'
+import password_icon from '../Assets/password.png'
 
 const LoginSignup = () => {
 
@@ -97,7 +97,7 @@ const LoginSignup = () => {
       <div className="inputs">
         {action === "Login" ? <div></div>: 
         <div className="input">
-          {/* <img src={user_icon} alt="" /> */}
+          <img src={user_icon} alt="" />
           <input 
           type="text" 
           placeholder="Name"
@@ -106,7 +106,7 @@ const LoginSignup = () => {
           />
         </div>}
         <div className="input">
-          {/* <img src={email_icon} alt="" /> */}
+          <img src={email_icon} alt="" />
           <input 
           type="email" 
           placeholder="Email"
@@ -115,7 +115,7 @@ const LoginSignup = () => {
           />
         </div>
         <div className="input">
-          {/* <img src={password_icon} alt="" /> */}
+          <img src={password_icon} alt="" />
           <input 
           type="password" 
           placeholder="Password"
