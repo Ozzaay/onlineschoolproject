@@ -26,9 +26,9 @@ function ProductDetails () {
         <li className="box">
             <img className="bild2" src={product.image} alt={product.name} />
             <li className="box2">
-                <p className="namn2">Product Name: {product.name}</p>
-                <p className="namn2">Product Price: {product.price}</p>
-                <p className="namn2">Product Description: {product.description}</p>
+                <p className="namn2">{product.name}</p>
+                <p className="namn2">{product.price}</p>
+                <p className="namn2">{product.description}</p>
             </li>
         </li>
         </>

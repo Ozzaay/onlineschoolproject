@@ -40,17 +40,14 @@ function AdminProducts () {
         <>
         <h1 className='produtta'>Admin Products</h1>
         <form className='prodform'>
-            <p className='g'>g</p>
             <ul className='ull'>
                 {products.map((product) => {
                     return(
                         <li className='scansostobaconkorv' key={product.id}>
                             <p></p>
-                            <a className='namn' href={`/admin/products/${product.name}`}>{product.name}</a>
-                            <p></p>
                             <img className='bild' src={product.image} alt={product.name} />
-                            <p></p>
-                            <p></p>
+                            <a className='namn' href={`/admin/products/${product.name}`}>{product.name}</a>
+                            <p className="price">{product.price}</p>
                         </li>
                     )
                 })}

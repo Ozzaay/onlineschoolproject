@@ -1,11 +1,12 @@
 .box{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  grid-template-columns: 30% 30%;
   margin: auto;
   margin-top: 2%;
-  width: 30%;
+  width: 80%;
   height: 100%;
   padding: 5%;
   background-color: #fff;
@@ -19,21 +20,21 @@
   align-items: center;
   margin: auto;
   margin-top: 7%;
+  margin-left: 70%;
   width: fit-content;
 }
 
 .bild2{
-  margin: auto;
-  margin-top: 6%;
-  width: 60%;
-  height: 60%;
+  margin-left: 70%;
+  width: auto;
+  height: 350px;
+  clip: rect(0px,200px,380px,0px);
 }
 
 .namn2{
   margin: auto;
-  margin-top: 0.7%;
-  font-size: 150%;
-  font-weight: bold;
-  color: rgb(0, 153, 255);
-  text-decoration: none;
+  width: fit-content;
+  margin-top: 4%;
+  font-size: 180%;
+  color: black;
 }

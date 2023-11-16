@@ -122,7 +122,10 @@ function AdminProductDetails () {
         <>
         <h1 className="produtta">ProductDetails</h1>
         <li className="box">
-            <img className="bild2" src={product.image} alt={product.name} />
+            <div>
+                <img className="bild2" src={product.image} alt={product.name} />
+            </div>
+            <div>
             <li className="box2">
             <label className="namn">Name </label>
             <input type="text" onChange={nameChangeHandler} value={product.name} />
@@ -134,6 +137,7 @@ function AdminProductDetails () {
             <input className="bildfil" type="file" onChange={handleImage}/>
             <button className="updatebutton" onClick={updateProduct}>Update Product</button>
             </li>
+            </div>
         </li>
         {/* <form className="adminform">
             <label className="namn"> Price </label>
