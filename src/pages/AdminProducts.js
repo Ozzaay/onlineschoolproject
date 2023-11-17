@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './Products.css';
+import './AdminProducts.css';
 
 function AdminProducts () {
     const [products, setProducts] = React.useState([]);
@@ -39,7 +40,7 @@ function AdminProducts () {
     return(
         <>
         <h1 className='produtta'>Admin Products</h1>
-        <a href="/admin/addproduct">Add Product</a>
+        <a className='addprod' href="/admin/addproduct">Add Product</a>
         <form className='prodform'>
             <ul className='ull'>
                 {products.map((product) => {
