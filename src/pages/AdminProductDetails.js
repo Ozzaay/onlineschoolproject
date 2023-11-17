@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./AdminProductDetails.css";
 
 function AdminProductDetails () {
     const { productId } = useParams();
@@ -12,6 +13,15 @@ function AdminProductDetails () {
             image: ""
         }
     );
+
+    function nameChangeHandler(event) {
+        setProduct((prevValue) => {
+            return {
+                ...prevValue,
+                name: event.target.value
+            }
+        })
+    }
 
     function priceChangeHandler(event) {
         setProduct((prevValue) => {
@@ -107,6 +117,28 @@ function AdminProductDetails () {
 
     return(
         <>
+        <h1 className="produtta">ProductDetails</h1>
+        <li className="box">
+            <div>
+                <img className="bild2" src={product.image} alt={product.name} />
+            </div>
+            <div>
+            <li className="box2">
+            <label className="namn">Name </label>
+            <input type="text" onChange={nameChangeHandler} value={product.name} />
+            <label className="namn">Price </label>
+            <input type="text" onChange={priceChangeHandler} value={product.price} />
+            <label className="namn">Description </label>
+            <input type="text" onChange={descriptionChangeHandler} value={product.description} />
+            <label className="namn">Image </label>
+            <input className="bildfil" type="file" onChange={handleImage}/>
+            <button className="updatebutton" onClick={updateProduct}>Update Product</button>
+            </li>
+            </div>
+        </li>
+        {/* <form className="adminform">
+            <label className="namn"> Price </label>
+
         <h1>ProductDetails</h1>
         <p>Product ID: {product.id}</p>
         <p>Product Name: {product.name}</p>
@@ -116,12 +148,12 @@ function AdminProductDetails () {
         <form>
             <label>Price</label>
             <input type="text" onChange={priceChangeHandler} value={product.price} />
-            <label>Description</label>
+            <label className="namn"> Description </label>
             <input type="text" onChange={descriptionChangeHandler} value={product.description} />
-            <label>Image</label>
+            <label className="namn"> Image </label>
             <input type="file" onChange={handleImage}/>
             <button onClick={updateProduct}>Update Product</button>
-        </form>
+        </form> */}
 
 
         {/* <h1>ProductDetails</h1>

@@ -1,0 +1,22 @@
+.bildfil{
+  color: rgb(0, 153, 255);
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 2%;
+}
+
+.updatebutton{
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 10%;
+  width: 11.3vw;
+  height: 59px;
+  color: #fff;
+  background: rgb(0, 153, 255);
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  border-color: transparent;
+}

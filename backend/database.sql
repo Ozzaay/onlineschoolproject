@@ -30,6 +30,8 @@ CREATE TABLE orders (
 
 
 INSERT INTO products (name, price, description, image) VALUES ('T-Shirt', '10', 'A nice T-Shirt', 'test');
+INSERT INTO accounts (username, password, email) VALUES ('Test User', '1234', 'idk@no');
+INSERT INTO accounts (username, password, email, is_admin) VALUES ('Admin', 'a', 'a', 'true');
 INSERT INTO accounts (username, password, email, is_admin) VALUES ('Test Admin', '1234', 'idk@no', 'true');
 
 UPDATE accounts SET cart = ARRAY[ARRAY[1,2],ARRAY[2,2]] WHERE id = 1;

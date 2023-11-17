@@ -1,0 +1,49 @@
+.produtta{
+  margin: auto;
+  margin-top: 1%;
+  width: fit-content;
+  color: #fff;
+}
+
+.prodform{
+  background-color: rgb(3, 58, 129);
+  margin: auto;
+  width: 90%;
+  height: 100vh;
+}
+
+.ull{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+.scansostobaconkorv{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 90%;
+  height: 106%;
+  background-color: transparent;
+  font-size: 105%;
+  margin-right: 10%;
+}
+
+.bild{
+  margin: auto;
+  height: 320px;
+  clip: rect(0px,200px,380px,0px);
+}
+
+.namn{
+  margin: auto;
+  font-size: 150%;
+  font-weight: bold;
+  color: rgb(0, 153, 255);
+  text-decoration: none;
+}
+
+.price{
+  margin-top: 15%;
+  margin: auto;
+  color: #fff;
+}
