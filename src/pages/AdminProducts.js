@@ -39,6 +39,7 @@ function AdminProducts () {
     return(
         <>
         <h1 className='produtta'>Admin Products</h1>
+        <a href="/admin/addproduct">Add Product</a>
         <form className='prodform'>
             <ul className='ull'>
                 {products.map((product) => {

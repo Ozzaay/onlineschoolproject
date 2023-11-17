@@ -99,9 +99,6 @@ function AdminProductDetails () {
             description: `${product.description}`,
             image: `${product.image}`
         }
-        var headers = {
-            "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
-        }
         await axios.post("http://localhost:5000/updateProduct", body, {
             headers: {
                 "authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
@@ -141,6 +138,15 @@ function AdminProductDetails () {
         </li>
         {/* <form className="adminform">
             <label className="namn"> Price </label>
+
+        <h1>ProductDetails</h1>
+        <p>Product ID: {product.id}</p>
+        <p>Product Name: {product.name}</p>
+        <p>Product Price: {product.price}</p>
+        <p>Product Description: {product.description}</p>
+        <img src={product.image} alt={product.name} />
+        <form>
+            <label>Price</label>
             <input type="text" onChange={priceChangeHandler} value={product.price} />
             <label className="namn"> Description </label>
             <input type="text" onChange={descriptionChangeHandler} value={product.description} />

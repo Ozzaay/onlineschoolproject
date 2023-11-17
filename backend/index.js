@@ -88,6 +88,81 @@ app.post("/login", async (req, res) => {
     }
 })
 
+app.post("/addToCart", verifyToken, async (req, res) => {
+    const { productId, amount } = req.body
+    try {
+        const addToCart = await pool.query(
+            `UPDATE accounts SET cart = array_append(cart, '${productId}%${amount}') WHERE id = '${req.user.id}' RETURNING *`
+        )
+        res.json(addToCart)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.post("/removeFromCart", verifyToken, async (req, res) => {
+    const { productId } = req.body
+    try {
+        const removeFromCart = await pool.query(
+            `UPDATE accounts SET cart = array_remove(cart, '${productId}') WHERE id = '${req.user.id}' RETURNING *`
+        )
+        res.json(removeFromCart)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.get("/getCart", verifyToken, async (req, res) => {
+    try {
+        const amount_of_products = await pool.query(`SELECT array_length(cart, 1) FROM accounts WHERE id = 1`)
+        var products = []
+        for (let i = 1; i <= amount_of_products.rows[0].array_length; i++) {
+            var product = await pool.query(`SELECT * FROM products WHERE id=(SELECT cart[${i}][1] FROM accounts WHERE id = 1)`)
+            var amount = await pool.query(`SELECT cart[${i}][2] FROM accounts WHERE id = 1`)
+            products.push({
+                id: product.rows[0].id, 
+                name: product.rows[0].name, 
+                price: product.rows[0].price, 
+                description: product.rows[0].description,
+                image: product.rows[0].image, 
+                amount: amount.rows[0].cart
+            })
+        }
+        res.json(products)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.post("/makeOrder", verifyToken, async (req, res) => {
+    const { products } = req.body
+    try{
+        var order = []
+        for (let i = 0; i < products.length; i++) {
+            await pool.query(`Select id, price FROM products WHERE id = '${products[i].id}'`).then((response) => {
+                let amount = products[i].amount
+                response.rows[0].amount = amount
+                order.push(response.rows[0])
+            })
+        }
+        var total = 0
+        for (let i = 0; i < order.length; i++) {
+            total += order[i].price * products[i].amount
+        }
+        await pool.query(
+            `INSERT INTO orders (date, account_id, products, total_cost) VALUES ('today', ${req.user.id}, ARRAY[ARRAY[${order[0].id},${order[0].amount}], ARRAY[${order[1].id},${order[1].amount}]], ${total})`
+        )
+
+        await pool.query(
+            `UPDATE accounts SET cart = null WHERE id = ${req.user.id}`
+        )
+
+        res.json("Order Successful")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 app.post("/authorization", verifyToken, async (req, res) => {
     try {
         if (!req.user.isAdmin) {
@@ -106,58 +181,10 @@ app.post("/createProduct", verifyToken, async (req, res) => {
         if (!req.user.isAdmin) {
             return res.sendStatus(403)
         } else {
-        const newProduct = await pool.query(
-            `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
-        )
-        res.json(newProduct)
-        }
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-app.post("/updateProduct/price", verifyToken, async (req, res) => {
-    const { name, price} = req.body
-    try {
-        if (!req.user.isAdmin) {
-            return res.sendStatus(403)
-        } else {
-        const updateProduct = await pool.query(
-            `UPDATE products SET price = '${price}' WHERE name = '${name}' RETURNING *`
-        )
-        res.json(updateProduct)
-        }
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-app.post("/updateProduct/description", verifyToken, async (req, res) => {
-    const { name, description} = req.body
-    try {
-        if (!req.user.isAdmin) {
-            return res.sendStatus(403)
-        } else {
-        const updateProduct = await pool.query(
-            `UPDATE products SET description = '${description}' WHERE name = '${name}' RETURNING *`
-        )
-        res.json(updateProduct)
-        }
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-app.post("/updateProduct/image", verifyToken, async (req, res) => {
-    const { name, image} = req.body
-    try {
-        if (!req.user.isAdmin) {
-            return res.sendStatus(403)
-        } else {
-        const updateProduct = await pool.query(
-            `UPDATE products SET image = '${image}' WHERE name = '${name}' RETURNING *`
-        )
-        res.json(updateProduct)
+            const newProduct = await pool.query(
+                `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
+            )
+            res.json(newProduct)
         }
     } catch (err) {
         console.error(err.message)
