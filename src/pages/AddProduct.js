@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./AddProd.css";
 
 function AddProduct(){
     const [productToAdd, setProductToAdd] = React.useState(
@@ -102,14 +103,18 @@ function AddProduct(){
 
     return(
         <>
-            <h1>Add Product</h1>
+            <h1 className="produtta" >Add Product</h1>
 
-            <form onSubmit={createProduct}>
-                <input type="text" name="name" placeholder="Name" onChange={nameChangeHandler} />
-                <input type="number" name="price" placeholder="Price" onChange={priceChangeHandler} />
-                <input type="text" name="description" placeholder="Description" onChange={descriptionChangeHandler} />
-                <input type="file" name="image" onChange={handleImage} />
-                <input type="submit" value="Create Product" />
+            <form className="cont" onSubmit={createProduct}>
+                <input className="prodinf" type="text" name="name" placeholder="Name" onChange={nameChangeHandler} />
+                <br/>
+                <input className="prodinf" type="number" name="price" placeholder="Price" onChange={priceChangeHandler} />
+                <br/>
+                <input className="prodinf" type="text" name="description" placeholder="Description" onChange={descriptionChangeHandler} />
+                <br/>
+                <input className="prodinf" type="file" name="image" onChange={handleImage} />
+                <br/>
+                <input className="addprodbutt" type="submit" value="Create Product" />
             </form>
 
             
