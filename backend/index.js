@@ -181,10 +181,10 @@ app.post("/createProduct", verifyToken, async (req, res) => {
         if (!req.user.isAdmin) {
             return res.sendStatus(403)
         } else {
-        const newProduct = await pool.query(
-            `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
-        )
-        res.json(newProduct)
+            const newProduct = await pool.query(
+                `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
+            )
+            res.json(newProduct)
         }
     } catch (err) {
         console.error(err.message)
