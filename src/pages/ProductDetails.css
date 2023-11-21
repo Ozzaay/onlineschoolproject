@@ -38,3 +38,64 @@
   font-size: 180%;
   color: black;
 }
+
+.backround{
+  margin: auto;
+  width: 90%;
+  height: fit-content;
+  /* background-color: rgb(1, 46, 105); */
+  background-image: linear-gradient(to top left, rgb(19, 45, 79), rgb(0, 105, 175));
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title{
+  width: 100%;
+  text-align: center;
+  border: #fff 1px solid;
+}
+
+.rows{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.single_picture{
+  float: left;
+  flex: 60%;
+  padding: 10px;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+}
+
+.single_picture img{
+  width: auto;
+  min-height: 300px;
+  max-height: none;
+}
+
+.payment{
+  float: left;
+  flex: 30%;
+  background-color: rgba(0, 0, 0, 0.282);
+  padding: 20px;
+  overflow: scroll;
+}
+
+.description{
+  width: 100%;
+  background-color: rgb(202, 103, 3);
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .single_picture, .payment{
+    flex: 100%;
+  }
+  .single_picture img{
+    max-height: 200px;
+    min-height: 100px;
+  }
+}

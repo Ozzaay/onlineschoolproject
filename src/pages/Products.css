@@ -5,19 +5,19 @@
   color: #fff;
 }
 
-.prodform{
+/* .prodform{
   background-color: rgb(3, 58, 129);
   margin: auto;
   width: 90%;
   height: 100vh;
-}
+} */
 
-.ull{
+/* .ull{
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
-}
+} */
 
-.scansostobaconkorv{
+/* .scansostobaconkorv{
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -26,24 +26,85 @@
   background-color: transparent;
   font-size: 105%;
   margin-right: 10%;
-}
-
-.bild{
+} */
+ 
+/* .bild{
   margin: auto;
   height: 320px;
   clip: rect(0px,200px,380px,0px);
-}
+} */
 
-.namn{
+/* .namn{
   margin: auto;
   font-size: 150%;
   font-weight: bold;
   color: rgb(0, 153, 255);
   text-decoration: none;
-}
+} */
 
-.price{
+/* .price{
   margin-top: 15%;
   margin: auto;
   color: #fff;
+} */
+
+.products{
+  margin: auto;
+  width: 90%;
+  height: fit-content;
+  background-image: linear-gradient(to top left, rgb(19, 45, 79), rgb(0, 105, 175));
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.instance{
+  float: left;
+  padding: 0.8%;
+  margin: 2%;
+}
+
+.nameAndPrice{
+  color: #fff;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+
+.name{
+  top: 0;
+  align-self: center;
+  text-shadow: #000000 0px 2px 2px;
+}
+
+.name a{
+  font-size: 150%;
+  font-weight: bold;
+  color: rgb(251, 251, 251);
+  text-decoration: underline;
+}
+
+.price{
+  bottom: 0;
+  align-self: center;
+}
+
+.price a{
+  color: rgb(255, 255, 255);
+  font-size: 80%;
+  font-weight: lighter;
+}
+
+.picture{
+  width: 190px;
+  height: 220px;
+  justify-self: center;
+  object-fit: cover;
+}
+
+@media (max-width: 475px) {
+  .products{
+    justify-content: space-evenly;
+  }
 }

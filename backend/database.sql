@@ -83,3 +83,8 @@ FROM (accounts INNER JOIN products ON accounts.cart[1][1] = products.id::VARCHAR
 SELECT array_length(cart, 1) FROM accounts WHERE id = 1;
 
 SELECT name FROM products WHERE id=(SELECT cart[1][1] FROM accounts WHERE id = 1);
+
+
+SET cart = ARRAY[ARRAY[3,3], ARRAY[5,1]]
+
+UPDATE accounts SET cart = array_cat(cart[], ARRAY[5,1]) WHERE id = 1;

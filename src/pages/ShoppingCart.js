@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import "./ShoppingCart.css";
+
+import no_image from '../Assets/icon-image-not-found.png'
 
 function ShoppingCart() {
     const [cart, setCart] = React.useState([]);
@@ -70,6 +73,14 @@ function ShoppingCart() {
         }
     }
 
+    function imageCheck(image) {
+        if (image === null || image === "") {
+            return no_image;
+        } else {
+            return image;
+        }
+    }
+
     React.useEffect(() => {
         getCart();
     }, []);
@@ -84,12 +95,14 @@ function ShoppingCart() {
     } else {
     return (
         <>
-            <h1>Shopping Cart</h1>
+            <h1 className="produtta">Shopping Cart</h1>
+            <h3 className="produtta">Logged in as {sessionStorage.getItem("username")}</h3>
+            <div className="products">
             
-            <ul>
-                {cart.map((product) => {
+            {/* <ul> */}
+                {/* {cart.map((product) => {
                     return (
-                        <li key={product.id}>
+                        <div key={product.id}>
                             <a href={`/products/${product.name}`}>{product.name} ${product.price} amount {product.amount}</a>
                             <form onSubmit={deleteFromCart}>
                                 <input type="hidden" name="name" value={product.id} />
@@ -97,12 +110,32 @@ function ShoppingCart() {
                                 <button type="submit">Delete</button>
                             </form>
                             <br />
-                        </li>
+                        </div>
                     )
-                })}
-            </ul>
-            <p>Total: ${cartTotal}</p>
-            <button onClick={makeOrder}>Order</button>
+                })} */}
+            {/* </ul> */}
+
+            {cart.map((product) => {
+                return (
+                    <div className='instance' key={product.id}>
+                        <img className='picture' src={imageCheck(product.image)} alt='Error'/>
+                        <div className='nameAndPrice'>
+                            <div className='name'>
+                                <a  href={`/products/${product.name}`}>{product.name}</a>
+                            </div>
+                            <div className='price'>
+                                <a  >Cost {product.price}</a>
+                            </div>             
+                        </div>
+                    </div>
+                )
+            })}
+            </div>
+
+            <div className="orderDiv">
+                <p>Total: ${cartTotal}</p>
+                <button onClick={makeOrder}>Order</button>
+            </div>
         </>
     )}
 }
