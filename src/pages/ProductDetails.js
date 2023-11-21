@@ -19,7 +19,8 @@ function ProductDetails () {
         try {
         event.preventDefault();
         var body = {
-            productId: event.target.name.value
+            productId: Number(event.target.name.value),
+            amount: 1
         }
         await axios.post("http://localhost:5000/addToCart", body, {
             headers: {
@@ -42,7 +43,7 @@ function ProductDetails () {
     return(
         <>
         <h1 className="produtta">ProductDetails</h1>
-        <li className="box">
+        {/* <li className="box">
             <img className="bild2" src={product.image} alt={product.name} />
             <li className="box2">
                 <p className="namn2">{product.name}</p>
@@ -53,7 +54,31 @@ function ProductDetails () {
                     <input type="submit" value="Add to Cart" />
                 </form>
             </li>
-        </li>
+        </li> */}
+        <div className="backround">
+            <div className="title">
+                <h2>{product.name}</h2>
+            </div> 
+
+            <div className="rows">
+                <div className="single_picture">
+                    <img src={product.image}></img>
+                </div>
+
+                <div className="payment">
+                    <p>Cost {product.price}</p>
+                    <form onSubmit={addToCart}>
+                        <input type="hidden" name="name" value={product.id} />
+                        <input type="submit" value="Add to Cart" />
+                    </form>
+                </div>
+            </div>
+
+            <div className="description">
+                <p>{product.description}</p>
+            </div>
+        </div>
+
         </>
     )
 }

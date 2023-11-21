@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Products.css';
 import './AdminProducts.css';
 
+import no_image from '../Assets/icon-image-not-found.png'
+
 function AdminProducts () {
     const [products, setProducts] = React.useState([]);
 
@@ -32,6 +34,14 @@ function AdminProducts () {
         })
     }
 
+    function imageCheck(image) {
+        if (image === null || image === "") {
+            return no_image;
+        } else {
+            return image;
+        }
+    }
+
     React.useEffect(() => {
         authorization();
         fetchProducts();
@@ -40,8 +50,10 @@ function AdminProducts () {
     return(
         <>
         <h1 className='produtta'>Admin Products</h1>
-        <a className='addprod' href="/admin/addproduct">Add Product</a>
-        <form className='prodform'>
+        <div className='addprod'>
+            <a href="/admin/addproduct">Add Product</a>
+        </div>
+        {/* <form className='prodform'>
             <ul className='ull'>
                 {products.map((product) => {
                     return(
@@ -54,7 +66,24 @@ function AdminProducts () {
                     )
                 })}
             </ul>
-        </form>
+        </form> */}
+        <div className='products'>
+            {products.map((product) => {
+                return(
+                    <div className='instance' key={product.id}>
+                        <img className='picture' src={imageCheck(product.image)} />
+                        <div className='nameAndPrice'>
+                            <div className='name'>
+                                <a  href={`/products/${product.name}`}>{product.name}</a>
+                            </div>
+                            <div className='price'>
+                                <a  >Cost {product.price}</a>
+                            </div>             
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
         </>
     )
 }

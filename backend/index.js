@@ -90,9 +90,9 @@ app.post("/login", async (req, res) => {
 
 app.post("/addToCart", verifyToken, async (req, res) => {
     const { productId, amount } = req.body
-    try {
+        try {
         const addToCart = await pool.query(
-            `UPDATE accounts SET cart = array_append(cart, '${productId}%${amount}') WHERE id = '${req.user.id}' RETURNING *`
+            `UPDATE accounts SET cart = array_cat(cart, ARRAY[[${productId},${amount}]]) WHERE id = '${req.user.id}' RETURNING *`
         )
         res.json(addToCart)
     } catch (err) {
@@ -117,8 +117,8 @@ app.get("/getCart", verifyToken, async (req, res) => {
         const amount_of_products = await pool.query(`SELECT array_length(cart, 1) FROM accounts WHERE id = 1`)
         var products = []
         for (let i = 1; i <= amount_of_products.rows[0].array_length; i++) {
-            var product = await pool.query(`SELECT * FROM products WHERE id=(SELECT cart[${i}][1] FROM accounts WHERE id = 1)`)
-            var amount = await pool.query(`SELECT cart[${i}][2] FROM accounts WHERE id = 1`)
+            var product = await pool.query(`SELECT * FROM products WHERE id = (SELECT cart[${i}][1] FROM accounts WHERE id = ${req.user.id})`)
+            var amount = await pool.query(`SELECT cart[${i}][2] FROM accounts WHERE id = ${req.user.id}`)
             products.push({
                 id: product.rows[0].id, 
                 name: product.rows[0].name, 
@@ -184,7 +184,7 @@ app.post("/createProduct", verifyToken, async (req, res) => {
             const newProduct = await pool.query(
                 `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
             )
-            res.json(newProduct)
+            res.json("Product Created")
         }
     } catch (err) {
         console.error(err.message)

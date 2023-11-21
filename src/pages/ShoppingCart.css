@@ -1,0 +1,16 @@
+
+.orderDiv {
+    display: flex;
+    width: 90%;
+    background-image: radial-gradient(rgb(215, 137, 19), rgb(112, 70, 0));
+    margin: auto;
+    position: sticky;
+    bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .orderDiv {
+        position: relative;
+        bottom: auto;
+    }
+}

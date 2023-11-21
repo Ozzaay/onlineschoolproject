@@ -91,6 +91,12 @@ function AddProduct(){
                 }
             }).then((response) => {
                 console.log(response);
+                if (response.data === "Product Created") {
+                    alert("Product Created");
+                    window.location.href = "/admin/products";
+                } else {
+                    alert("Product Creation Failed");
+                }
             })
         } catch (error) {
             console.log(error);
@@ -114,10 +120,10 @@ function AddProduct(){
                 <br/>
                 <input className="prodinf" type="file" name="image" onChange={handleImage} />
                 <br/>
-                <input className="addprodbutt" type="submit" value="Create Product" />
+                <button className="addprodbutt" type="submit">Create Product</button>
             </form>
 
-            
+
 
         </>
     )

@@ -1,10 +1,29 @@
-.links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  .links {
+    display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+      position: sticky;
+      top: 0;
+    }
+
+  .links li{
+      float: left;
+  }
+
+  .links li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
+
+  .links li a:hover:not(.active) {
+      background-color: #111;
   }
   
   .link {
@@ -25,4 +44,11 @@
   
   .active {
     background-color: #04AA6D;
+  }
+
+  @media screen and (max-width: 600px) {
+    .links {
+      flex-direction: column;
+      position: relative;
+    }
   }
