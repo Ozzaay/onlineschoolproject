@@ -6,6 +6,7 @@ import "./ProductDetails.css";
 function ProductDetails () {
     const { productId } = useParams();
     const [product, setProduct] = React.useState("");
+    const [amount, setAmount] = React.useState(0);
 
     async function fetchProductDetails() {
         await axios.post("http://localhost:5000/GetProduct", {
@@ -18,17 +19,24 @@ function ProductDetails () {
     async function addToCart(event) {
         try {
         event.preventDefault();
+        console.log(product.id, amount)
         var body = {
-            productId: Number(event.target.name.value),
-            amount: 1
+            productId: Number(product.id),
+            amount: Number(amount)
         }
-        await axios.post("http://localhost:5000/addToCart", body, {
+        await axios.post("http://localhost:5000/add_to_cart", body, {
             headers: {
                 authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
             }
         })
         .then((response) => {
-            console.log(response);
+            if (response.data === "Already in cart") {
+                alert("Already in cart");
+            }
+            if (response.data === "Added to cart") {
+                alert("Added to cart");
+            }
+            // console.log(response);
         })
         } catch (error) {
             console.log(error);
@@ -69,6 +77,7 @@ function ProductDetails () {
                     <p>Cost {product.price}</p>
                     <form onSubmit={addToCart}>
                         <input type="hidden" name="name" value={product.id} />
+                        <input type="number" name="amount" value={amount} onChange={(e) => {setAmount(e.target.value)}}></input>
                         <input type="submit" value="Add to Cart" />
                     </form>
                 </div>

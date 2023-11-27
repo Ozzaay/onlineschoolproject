@@ -61,6 +61,8 @@
   float: left;
   padding: 0.8%;
   margin: 2%;
+  display: flex;
+  flex-direction: column;
 }
 
 .nameAndPrice{

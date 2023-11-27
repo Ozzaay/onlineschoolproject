@@ -88,47 +88,71 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.post("/addToCart", verifyToken, async (req, res) => {
+app.post("/add_to_cart", verifyToken, async (req, res) => {
     const { productId, amount } = req.body
-        try {
-        const addToCart = await pool.query(
-            `UPDATE accounts SET cart = array_cat(cart, ARRAY[[${productId},${amount}]]) WHERE id = '${req.user.id}' RETURNING *`
+    try{
+        const checkIfAlreadyInCart = await pool.query(
+            `SELECT cart FROM accounts WHERE id = ${req.user.id}`
         )
-        res.json(addToCart)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
 
-app.post("/removeFromCart", verifyToken, async (req, res) => {
-    const { productId } = req.body
-    try {
-        const removeFromCart = await pool.query(
-            `UPDATE accounts SET cart = array_remove(cart, '${productId}') WHERE id = '${req.user.id}' RETURNING *`
-        )
-        res.json(removeFromCart)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-app.get("/getCart", verifyToken, async (req, res) => {
-    try {
-        const amount_of_products = await pool.query(`SELECT array_length(cart, 1) FROM accounts WHERE id = 1`)
-        var products = []
-        for (let i = 1; i <= amount_of_products.rows[0].array_length; i++) {
-            var product = await pool.query(`SELECT * FROM products WHERE id = (SELECT cart[${i}][1] FROM accounts WHERE id = ${req.user.id})`)
-            var amount = await pool.query(`SELECT cart[${i}][2] FROM accounts WHERE id = ${req.user.id}`)
-            products.push({
-                id: product.rows[0].id, 
-                name: product.rows[0].name, 
-                price: product.rows[0].price, 
-                description: product.rows[0].description,
-                image: product.rows[0].image, 
-                amount: amount.rows[0].cart
-            })
+        if (checkIfAlreadyInCart.rows[0].cart.some(item => item.productId === productId)) {
+            res.json("Already in cart")
+        } else {
+            if (checkIfAlreadyInCart.rows[0].cart === null) {
+                const addItem = await pool.query(
+                    `UPDATE accounts SET cart = 
+                    '[{
+                        "productId": ${productId},
+                        "amount": ${amount}
+                    }]'::jsonb
+                    WHERE id = ${req.user.id};`
+                )
+                res.json("Added to cart")
+            } else {
+            const addItem = await pool.query(
+                `UPDATE accounts SET cart = cart || 
+                '[{
+                    "productId": ${productId},
+                    "amount": ${amount}
+                }]'::jsonb
+                WHERE id = ${req.user.id};`
+            )
+            res.json("Added to cart")
+            }
         }
-        res.json(products)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.post("/cart/change_cart", verifyToken, async (req, res) => {
+    const products = JSON.stringify(req.body.newCart)
+    try {
+        const updateCart = await pool.query(
+            `UPDATE accounts SET cart ='${products}'::jsonb WHERE id = ${req.user.id} RETURNING cart;`
+        ).then((response) => {
+            res.json("Cart Updated")
+        })
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.get("/cart/get_cart", verifyToken, async (req, res) => {
+    try {
+        const getCart = await pool.query(
+            `SELECT cart FROM accounts WHERE id = ${req.user.id};`
+        )
+        for (let i = 0; i < getCart.rows[0].cart.length; i++) {
+            var product = await pool.query(
+                `SELECT * FROM products WHERE id = ${getCart.rows[0].cart[i].productId}`
+            )
+            getCart.rows[0].cart[i].name = product.rows[0].name
+            getCart.rows[0].cart[i].price = product.rows[0].price
+            getCart.rows[0].cart[i].description = product.rows[0].description
+            getCart.rows[0].cart[i].image = product.rows[0].image
+        }
+        res.json(getCart.rows[0].cart)
     } catch (err) {
         console.error(err.message)
     }
@@ -183,8 +207,9 @@ app.post("/createProduct", verifyToken, async (req, res) => {
         } else {
             const newProduct = await pool.query(
                 `INSERT INTO products (name, price, description, image) VALUES('${name}', '${price}', '${description}', '${image}') RETURNING *`
-            )
+            ).then(
             res.json("Product Created")
+            )
         }
     } catch (err) {
         console.error(err.message)
