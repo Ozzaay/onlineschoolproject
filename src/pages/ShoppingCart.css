@@ -8,6 +8,92 @@
     bottom: 0;
 }
 
+.items{
+    /* float: left; */
+    color: #fff;
+    border: 1px solid #fff;
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: nowrap;
+    /* flex-direction: column; */
+    
+    /* width: 78%; */
+    /* height: 22%; */
+}
+
+.orderNameAndPrice {
+    overflow: scroll;
+    float: left;
+    color: #fff;
+    border: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    width: 85.4%;
+    /* flex: 70%; */
+    height: 98%;
+}
+
+.orderName{
+    top: 0;
+    align-self: center;
+    text-shadow: #000000 0px 2px 2px;
+}
+  
+.orderName a{
+    font-size: 150%;
+    font-weight: bold;
+    color: rgb(251, 251, 251);
+    text-decoration: underline;
+}
+  
+.orderPrice{
+    bottom: 0;
+    align-self: center;
+}
+  
+.orderPrice a{
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: lighter;
+}
+
+.amount{
+    display: flex;
+    flex-direction: column;
+    width: 14%;
+    /* float: right; */
+    /* right: 0; */
+    /* flex: 10%; */
+}
+
+.amount a{
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    font-weight: solid;
+    /* margin-left: 20%; */
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.add {
+    width: 100%;
+    background-color: green;
+}
+
+.add:hover {
+    background-color: lightgreen;
+}
+
+.reduce {
+    width: 100%;
+    background-color: red;
+}
+
+.reduce:hover {
+    background-color: lightcoral
+}
+
 @media (max-width: 600px) {
     .orderDiv {
         position: relative;
