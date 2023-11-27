@@ -90,6 +90,16 @@
   text-align: center;
 }
 
+.cartbut{
+  background: rgb(0, 153, 255);
+  border: transparent;
+  color: #fff;
+  padding: 1%;
+  font-size: 19px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 700px) {
   .single_picture, .payment{
     flex: 100%;

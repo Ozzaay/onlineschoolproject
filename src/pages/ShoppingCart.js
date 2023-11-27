@@ -88,8 +88,8 @@ function ShoppingCart() {
     if (sessionStorage.getItem("accessToken") === null || sessionStorage.getItem("accessToken") === undefined || sessionStorage.getItem("accessToken") === "") {
         return (
             <>
-                <h1>Shopping Cart</h1>
-                <p>You are not logged in</p>
+                <h1 className='hometitle'>Shopping Cart</h1>
+                <p className='expl'>You are not logged in</p>
             </>
         )
     } else {

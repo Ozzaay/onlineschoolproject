@@ -69,8 +69,9 @@ function ProductDetails () {
                     <p>Cost {product.price}</p>
                     <form onSubmit={addToCart}>
                         <input type="hidden" name="name" value={product.id} />
-                        <input type="submit" value="Add to Cart" />
+                        <input className="cartbut" type="submit" value="Add to Cart" />
                     </form>
+                    {/* <button onClick={addToCart}>Add to Cart</button> */}
                 </div>
             </div>
 
