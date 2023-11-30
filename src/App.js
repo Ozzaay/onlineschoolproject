@@ -3,13 +3,13 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import Links from "./components/links";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
-import AdminProducts from "./pages/AdminProducts";
-import AdminProductDetails from "./pages/AdminProductDetails";
-import ShoppingCart from './pages/ShoppingCart';
-import AddProduct from './pages/AddProduct';
+import Login from "./pages/User Info/Login";
+import Products from "./pages/Products/Products";
+import ProductDetails from "./pages/Products/ProductDetails";
+import AdminProducts from "./pages/Admin/AdminProducts";
+import AdminProductDetails from "./pages/Admin/AdminProductDetails";
+import ShoppingCart from './pages/User Info/ShoppingCart';
+import AddProduct from './pages/Admin/AddProduct';
 const helmetContext = {};
 
 function App() {
