@@ -5,6 +5,7 @@
   display: flex;
   margin-left: 5%;
   width: fit-content;
+  float: left;
 }
 
 .addprod a{
