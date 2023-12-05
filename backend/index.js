@@ -32,6 +32,51 @@ const verifyToken = (req, res, next) => {
     }
 }
 
+app.get("/site_text/single/:name", (req, res) => {
+    const place = req.params.name
+    try {
+        pool.query(`SELECT * FROM site_text WHERE name='${place}'`, (err, result) => {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(result.rows)
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post("/site_text/update", verifyToken, async (req, res) => {
+    const { name, text } = req.body
+    try {
+        if (!req.user.isAdmin) {
+            return res.sendStatus(403)
+        } else {
+        const updateText = await pool.query(
+            `UPDATE site_text SET text = '${text}' WHERE name = '${name}' RETURNING *`
+        )
+        res.json(updateText)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.get("/site_text/get_text", (req, res) => {
+    try {
+        pool.query(`SELECT * FROM site_text`, (err, result) => {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(result.rows)
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 app.get("/GetAllProducts", (req, res) => {
     try {
     pool.query("SELECT * FROM products", (err, result) => {
@@ -245,6 +290,65 @@ app.post("/deleteProduct", verifyToken, async (req, res) => {
         }
     } catch (err) {
         console.error(err.message)
+    }
+})
+
+app.get("/footer/get_footer", (req, res) => {
+    try {
+        pool.query("SELECT * FROM footer", (err, result) => {
+            // console.log(result.rows)
+            res.json(result.rows)
+        })
+    } catch(error) {
+        console.log(error);
+    }
+})
+
+app.post("/footer/create_footer", verifyToken, async (req, res) => {
+    const { text, link } = req.body
+    try {
+        if (!req.user.isAdmin) {
+            return res.sendStatus(403)
+        } else {
+            const newFooter = await pool.query(
+                `INSERT INTO footer (text, link) VALUES('${text}', '${link}') RETURNING *`
+            )
+            res.json(newFooter)
+        }
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+app.post("/footer/update_footer", verifyToken, async (req, res) => {
+    const { id, text, link } = req.body
+    try {
+        if (!req.user.isAdmin) {
+            return res.sendStatus(403)
+        } else {
+        const updateFooter = await pool.query(
+            `UPDATE footer SET text = '${text}', link = '${link}' WHERE id = '${id}' RETURNING *`
+        )
+        res.json(updateFooter)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post("/footer/delete_footer", verifyToken, async (req, res) => {
+    const { id }  = req.body
+    try {
+        if (!req.user.isAdmin) {
+            return res.sendStatus(403)
+        } else {
+        const deleteFooter = await pool.query(
+            `DELETE FROM footer WHERE id = ${id} RETURNING *`
+        )
+        res.json(deleteFooter)
+        }
+    } catch (error) {
+        console.log(error);
     }
 })
 

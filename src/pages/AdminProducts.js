@@ -53,6 +53,12 @@ function AdminProducts () {
         <div className='addprod'>
             <a href="/admin/addproduct">Add Product</a>
         </div>
+        <div className='addprod'>
+            <a href="/admin/footer">Footers</a>
+        </div>
+        <div className='addprod'>
+            <a href="/admin/text">Text Edit</a>
+        </div>
         {/* <form className='prodform'>
             <ul className='ull'>
                 {products.map((product) => {

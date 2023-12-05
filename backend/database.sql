@@ -29,6 +29,19 @@ CREATE TABLE orders (
 );
 
 
+CREATE TABLE site_text (
+    name VARCHAR(255) UNIQUE NOT NULL,
+    text VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE footer (
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(255),
+    link VARCHAR(255)
+);
+
+
+
 INSERT INTO products (name, price, description, image) VALUES ('T-Shirt', '10', 'A nice T-Shirt', 'test');
 INSERT INTO accounts (username, password, email) VALUES ('Test User', '1234', 'idk@no');
 INSERT INTO accounts (username, password, email, is_admin) VALUES ('Admin', 'a', 'a', 'true');
