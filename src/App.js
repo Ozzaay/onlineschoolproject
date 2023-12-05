@@ -10,9 +10,9 @@ import AdminProducts from "./pages/AdminProducts";
 import AdminProductDetails from "./pages/AdminProductDetails";
 import ShoppingCart from './pages/ShoppingCart';
 import AddProduct from './pages/AddProduct';
-import AdminFooterEdit from './pages/AdminFooterEdit';
+import AdminFooterEdit from './pages/Admin/AdminFooterEdit';
 import Footer from './components/footer';
-import AdminTextEdit from './pages/AdminTextEdit';
+import AdminTextEdit from './pages/Admin/AdminTextEdit';
 const helmetContext = {};
 
 function App() {

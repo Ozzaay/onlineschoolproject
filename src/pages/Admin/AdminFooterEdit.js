@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import FooterEdit from "../components/footerDetail"
+import FooterEdit from "../../components/footerDetail"
 
 function AdminFooterEdit() {
     const [footer, setFooter] = React.useState([]);
